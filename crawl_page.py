@@ -6,6 +6,9 @@ from requests.exceptions import RequestException
 from bs4 import BeautifulSoup
 from time import sleep
 
+#Unnecessary Lib
+from tqdm import tqdm
+
 def append_dup(main_list, child_list, counts):
     for i in range(counts):
         main_list.append(child_list)
@@ -227,6 +230,7 @@ url_list = pd.read_csv('link_book_filtered.csv')
 marker = pd.read_json('countmain.json', orient='records')
 marker = marker['num_of_forward'][0]
 url_list = url_list.iloc[marker :, :]['book_link']
+# prog_bar = tqdm(range(len(url_list)), colour="YELLOW")
 # url_list = pd.read_csv('abondoned.csv')['urls']
 # url_list = ['https://www.iranketab.ir/book/1601-oversubscribed-how-to-get-people-lining-up-to-do-business-with-you', 'https://www.iranketab.ir/book/12760-heat-up-all-my-winter', 'https://www.iranketab.ir/book/86608-self-efficacy-in-nursing', 'https://www.iranketab.ir/book/1017-the-compound-effect', 'https://www.iranketab.ir/book/116021-a-hundred-years-beyond-the-pleasure-principle', 'https://www.iranketab.ir/book/120069-animals-atlas']
 # url_list = ['https://www.iranketab.ir/book/119673-sinful-angels']
@@ -314,15 +318,15 @@ test_data = {
 headerss = {
             # "Accept-Encoding": "en-US,en;q=0.9,fa;q=0.8",
             "Accept-Language": "en-US,en;q=0.9",
-            # 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_2) AppleWebKit/601.3.9 (KHTML, like Gecko) Version/9.0.2 Safari/601.3.9',
-            'User-Agent': 'Mozilla/5.0 (Linux; Android 13; SM-G991B) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Mobile Safari/537.36'}
+            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_2) AppleWebKit/601.3.9 (KHTML, like Gecko) Version/9.0.2 Safari/601.3.9'}
+            # 'User-Agent': 'Mozilla/5.0 (Linux; Android 13; SM-G991B) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Mobile Safari/537.36'}
 countmain = 0
-for url in url_list:
+for bar, url in zip(tqdm(range(len(url_list)), colour="GREEN"), url_list):
     # print(url)
     if countmain %25 == 0:
         sleep(.5)
-    if countmain == 1000:
-        break
+    # if countmain == 10000:
+    #     break
     try:
         response = requests.get(url, headers=headerss, timeout=10)
     except RequestException as e:
@@ -336,8 +340,6 @@ for url in url_list:
             soup = BeautifulSoup(response.text, 'html.parser')
             div_tags = soup.find('div', {'class': 'product-container well clearfix'})
             books = div_tags.find_all('div', {'class': 'col-md-9 col-sm-9'})
-            if countmain%100 == 0:
-                print(countmain)
 
             for book in books:
                 # Getting bio book and header
