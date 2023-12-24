@@ -35,6 +35,7 @@ In the `cleaner_book` file, all the data is cleaned and then saved in a new CSV 
 
 Diagram:
 
+![Book (1)](https://github.com/amiralira/G8_BookBank/assets/47474659/6fca7860-557a-4c27-a429-d533046bbe99)
 
 ## Step 3 (*Dashboarding*)
 
