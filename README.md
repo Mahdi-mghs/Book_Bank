@@ -38,6 +38,14 @@ Diagram:
 ![Book (1)](https://github.com/amiralira/G8_BookBank/assets/47474659/6fca7860-557a-4c27-a429-d533046bbe99)
 
 ## Step 3 (*Dashboarding*)
+In `st_git` file we create a dynamic dashboard with streamlit library. 
+
+In this dashboard, graphs about the frequency of books of each genre, the number of books by top authors, translators and publishers, books published in different years, the frequency of books based on the type of cover, as well as the distribution of book prices based on the year of publication and book rating are displayed in has come
+
+There is also a search section where the user can search for the desired book by specifying the maximum price, minimum score, author, publisher and book genre.
+
+In the figure below, a view of the dashboard is displayed:
+![qbctd](https://github.com/amiralira/G8_BookBank/assets/77622627/89bc7e66-768c-4d9f-82c8-2c07f07943eb)
 
 
 
