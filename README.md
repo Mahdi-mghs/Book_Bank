@@ -47,7 +47,7 @@ There is also a search section where the user can search for the desired book by
 In the figure below, a view of the dashboard is displayed:
 ![qbctd](https://github.com/amiralira/G8_BookBank/assets/77622627/89bc7e66-768c-4d9f-82c8-2c07f07943eb)
 
-
+> You can check final result here [Streamlit_Dashboard](https://bookbank-st.streamlit.app/) 🕶️
 
 ## Step 4 (*Null Hypothesis*)
 
